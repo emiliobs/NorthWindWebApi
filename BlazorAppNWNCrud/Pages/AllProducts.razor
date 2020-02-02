@@ -3,9 +3,8 @@
 
 
 <h3>Products</h3>
-
-<button class="btn btn-primary mb-3"><span class="oi oi-plus"></span> New Product</button>
-
+<hr />
+<button class="btn btn-primary mb-2"><span class="oi oi-plus"></span> New Product</button>
 
 @if (Products == null)
 {
@@ -13,33 +12,8 @@
 }
 else
 {
-    <table class="table table-striped">
-        <thead style="background-color:black; color:white;">
-            <tr>
-                <th>Name</th>
-                <th>Unit Price</th>
-                <th>Unit In Stock</th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in Products)
-            {
-                <tr>
-                    <td>@product.Name</td>
-                    <td>@product.UnitPrice" <span class="oi oi-british-pound"></span></td>
-                    <td>@product.UnitsInStock</td>
-                    <td><button class="btn btn-info" title="Edit"><span class="oi oi-pencil"></span></button></td>
-                    <td><button class="btn btn- bg-warning" title="Details"><span class="oi oi-browser"></span></button></td>
-                    <td><button class="btn btn-danger" title="Delete"><span class="oi oi-trash"></span></button></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <Table Products="Products"></Table>
 }
-
 
 @code {
 
@@ -50,6 +24,7 @@ else
         //await Task.Delay(10000);
 
         Products = await HttpClient.GetJsonAsync<List<Product>>("https://localhost:44329/products");
+        //Products = new List<Product>();
 
 
     }
