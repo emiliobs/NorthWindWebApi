@@ -29,12 +29,12 @@ namespace NorthWindWind.Api
             services.AddControllers();
             services.AddScoped<AppDbContext>();
             services.AddScoped<ProductsRepository>();
-            services.AddCors(options => options.AddPolicy("CORSPolicy", builder => 
+            services.AddCors(options => options.AddPolicy("CORSPolicy", builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                
+
             }));
-          
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +50,7 @@ namespace NorthWindWind.Api
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors("CORSPolicy");
 
             app.UseEndpoints(endpoints =>
             {
