@@ -25,7 +25,7 @@ else
     {
         //await Task.Delay(10000);
 
-        Products = await HttpClient.GetJsonAsync<List<Product>>("https://localhost:44329/products");
+        Products = await HttpClient.GetJsonAsync<List<Product>>("https://localhost:44329/products/");
         //Products = new List<Product>();
 
 

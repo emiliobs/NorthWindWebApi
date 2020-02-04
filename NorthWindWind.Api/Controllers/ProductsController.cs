@@ -35,18 +35,17 @@ namespace NorthWindWind.Api.Controllers
             return Ok(_productsRepository.GetById(id));
         }
 
-        [HttpPost]
-       
+        [HttpPost]         
         public IActionResult Post([FromBody] Product product)
         {
           
-                return Ok(_productsRepository.Create(product));
+              return Ok(_productsRepository.Create(product));
+            //return new CreatedAtRouteResult("Get", new { id = product.Id }, product);
 
-           
 
         }
 
-       
+        
         public IActionResult Put([FromBody] Product product)
         {
            
