@@ -1,10 +1,12 @@
 ﻿@page "/AllProducts"
-@inject HttpClient HttpClient
 
 
 <h3>Products</h3>
 <hr />
-<button class="btn btn-primary mb-2"><span class="oi oi-plus"></span> New Product</button>
+<NavLink class="btn btn-primary mb-3" href="Create">
+    <span class="oi oi-plus" aria-hidden="true"></span> New Product
+</NavLink>
+
 
 @if (Products == null)
 {

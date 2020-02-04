@@ -36,9 +36,14 @@ namespace NorthWindWind.Api.Controllers
         }
 
         [HttpPost]
+       
         public IActionResult Post([FromBody] Product product)
         {
-            return Ok(_productsRepository.Create(product));
+          
+                return Ok(_productsRepository.Create(product));
+
+           
+
         }
 
         public IActionResult Put([FromBody] Product product)

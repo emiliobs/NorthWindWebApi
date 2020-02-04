@@ -15,7 +15,7 @@ namespace NorthWind.Dal
             _context = context;
         }
 
-        public List<Product> GetAll() => _context.Products.ToList();
+        public List<Product> GetAll() => _context.Products.OrderBy(p =>p.Name).ToList();
         public Product GetById(int id) => _context.Products.Where(p => p.Id == id).FirstOrDefault();
 
         public Product Create(Product product)

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Entities", "North
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthWindWind.Api", "NorthWindWind.Api\NorthWindWind.Api.csproj", "{030D7908-15BB-4522-BED7-D7D6EC9AB3FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppNWNCrud", "BlazorAppNWNCrud\BlazorAppNWNCrud.csproj", "{AF0A4C04-032F-46CC-9479-44FC02A798C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppNWNCrud", "BlazorAppNWNCrud\BlazorAppNWNCrud.csproj", "{AF0A4C04-032F-46CC-9479-44FC02A798C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

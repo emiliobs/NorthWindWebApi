@@ -1,4 +1,5 @@
-﻿<tbody>
+﻿@inject NavigationManager navigation
+<tbody>
     @if (Products.Count == 0)
     {
         <tr>
@@ -12,14 +13,14 @@
     {
         @foreach (var product in Products)
         {
-            <tr>
-                <td>@product.Name</td>
-                <td>@product.UnitPrice" <span class="oi oi-british-pound"></span></td>
-                <td>@product.UnitsInStock</td>
-                <td><button class="btn btn-info" title="Edit"><span class="oi oi-pencil"></span></button></td>
-                <td><button class="btn btn- bg-warning" title="Details"><span class="oi oi-browser"></span></button></td>
-                <td><button class="btn btn-danger" title="Delete"><span class="oi oi-trash"></span></button></td>
-            </tr>
+<tr>
+    <td>@product.Name</td>
+    <td>@product.UnitPrice" <span class="oi oi-british-pound"></span></td>
+    <td>@product.UnitsInStock</td>
+    <td><button class="btn btn-info" title="Edit"><span class="oi oi-pencil"></span></button></td>
+    <td><button class="btn btn- bg-warning" title="Details"><span class="oi oi-browser"></span></button></td>
+    <td><a class="btn btn-danger" title="Delete" href="/DeleteProduct/@product.Id"><span class="oi oi-trash"></span></a></td>
+</tr>
         }
 
     }
@@ -29,5 +30,7 @@
 
     [Parameter]
     public List<Product> Products { get; set; }
+
+ 
 
 }

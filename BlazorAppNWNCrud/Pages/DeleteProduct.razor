@@ -1,0 +1,45 @@
+﻿@page "/DeleteProduct/{id}"
+@inject NavigationManager Navigation
+<h2>Delete Product</h2>
+<h3>Are you sure you want to Delete Product with Id: @Product.Id</h3>
+<hr />
+<table class="col-md-4">
+    <tr>
+        <td>Name:</td>
+        <td>@Product.Name</td>
+    </tr>
+    <tr>
+        <td>Unit Price:</td>
+        <td>@Product.UnitPrice</td>
+    </tr>
+    <tr>
+        <td>Unit In Stock:</td>
+        <td>@Product.UnitsInStock</td>
+    </tr>
+  </table>
+<div class="form-group">
+    <button class="btn btn-danger" @onclick="@Delete">Delete</button>
+</div>
+
+@code {
+    [Parameter] public string Id { get; set; }
+    Product Product = new Product();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Product = await HttpClient.GetJsonAsync<Product>("https://localhost:44329/products/" + Convert.ToInt32(Id));
+        Console.WriteLine(Product.Id);
+    }
+    protected async Task Delete()
+    {
+        await HttpClient.DeleteAsync("https://localhost:44329/products/" + Convert.ToInt32(Id));
+        Navigation.NavigateTo("AllProducts");
+    }
+
+    void Cancel()
+    {
+        Navigation.NavigateTo("AllProducts");
+
+    }
+
+}

@@ -1,5 +1,50 @@
-﻿<h3>Create</h3>
+﻿@page "/Create"
+@inject NavigationManager navigation
+
+<h3>Create Products</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="Name" class="control-label">Name</label>
+                <input placeholder="Product" class="form-control" @bind="Product.Name" />
+            </div>
+            <div class="form-group">
+                <label for="UnitPrice" class="control-label">Unit Price</label>
+                <input type="number" class="form-control" @bind="Product.UnitPrice" />
+            </div>
+            <div class="form-group">
+                <label for="UnitsInStocks" class="control-label">Units In Stock</label>
+                <input type="number" class="form-control" @bind="Product.UnitsInStock" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" @onclick="@CreateProduct">Save</button>
+                <button class="btn btn-dark" @onclick="@Cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 @code {
+
+    Product Product = new Product();
+
+    private async Task CreateProduct()
+    {
+
+        await HttpClient.SendJsonAsync(HttpMethod.Post, "https://localhost:44329/products/", Product);
+        Console.WriteLine("Producto Creado..");
+        navigation.NavigateTo("AllProducts");
+    }
+
+    void Cancel()
+    {
+        navigation.NavigateTo("AllProducts");
+
+    }
+
 
 }
