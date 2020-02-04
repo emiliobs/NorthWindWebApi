@@ -17,8 +17,8 @@
     <td>@product.Name</td>
     <td>@product.UnitPrice" <span class="oi oi-british-pound"></span></td>
     <td>@product.UnitsInStock</td>
-    <td><button class="btn btn-info" title="Edit"><span class="oi oi-pencil"></span></button></td>
-    <td><button class="btn btn- bg-warning" title="Details"><span class="oi oi-browser"></span></button></td>
+    <td><a class="btn btn-info" title="Edit" href="/EditProduct/@product.Id"><span class="oi oi-pencil"></span></a></td>
+    <td><a class="btn btn- bg-warning" title="Details" href="/DetailsProduct/@product.Id"><span class="oi oi-browser"></span></a></td>
     <td><a class="btn btn-danger" title="Delete" href="/DeleteProduct/@product.Id"><span class="oi oi-trash"></span></a></td>
 </tr>
         }

@@ -1,7 +1,6 @@
-﻿@page "/Create"
-@inject NavigationManager navigation
+﻿@page "/EditProduct/{id}"
 
-<h3>Create Products</h3>
+<h3>Edit Product</h3>
 <hr />
 
 <div class="row">
@@ -21,34 +20,36 @@
                 <input type="number" class="form-control" @bind="Product.UnitsInStock" />
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" @onclick="@(async () => await CreateProduct())">Save</button>
+                <button type="submit" class="btn btn-primary" @onclick="@(async () => await EditProducts())">Edit</button>
                 <button class="btn btn-dark" @onclick="@Cancel">Cancel</button>
             </div>
         </form>
     </div>
 </div>
 
-
 @code {
 
-    Product Product = new Product();
     [Parameter]
-    public List<Product> Products { get; set; }
+    public string Id { get; set; }
 
-    private async Task CreateProduct()
+    Product Product = new Product();
+
+    protected async override Task OnInitializedAsync()
     {
+        Product = await HttpClient.GetJsonAsync<Product>("https://localhost:44329/products/" + Convert.ToInt32(Id));
+    }
 
+    protected async Task EditProducts()
+    {
+        await HttpClient.SendJsonAsync(HttpMethod.Put, "https://localhost:44329/products/", Product);
+        NavigationManager.NavigateTo("AllProducts");
 
-        await HttpClient.SendJsonAsync(HttpMethod.Post, "https://localhost:44329/products/", Product);
-        Products.Add(Product);
-        navigation.NavigateTo("AllProducts");
     }
 
     void Cancel()
     {
-        navigation.NavigateTo("AllProducts");
+        NavigationManager.NavigateTo("AllProducts");
 
     }
-
 
 }

@@ -1,0 +1,31 @@
+﻿@page "/DetailsProduct/{id}"
+<h3>Details Product</h3>
+<hr />
+<div class="card">
+    <div class="card-header">
+        Name: @Product.Name
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+        Unit Price: <p class="card-text">@Product.UnitPrice</p>
+
+        </div>
+        <div class="form-group">
+        Units In Stock: <p class="card-text">@Product.UnitsInStock</p>
+
+        </div>
+        <a href="AllProducts" class="btn btn-dark">Go Index</a>
+    </div>
+</div>
+@code {
+
+    [Parameter] public string Id { get; set; }
+    public Product Product { get; set; } = new Product();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Product = await HttpClient.GetJsonAsync<Product>("https://localhost:44329/products/" + Convert.ToInt32(Id));
+    }
+
+}
+
